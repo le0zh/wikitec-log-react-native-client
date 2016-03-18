@@ -67,21 +67,22 @@ const SubSystemSelectComponent = React.createClass({
 
 	render() {
 		const selectedSubSystem = this.state.currentSubSystem || subSystemList[0];
-
+		const {
+			style
+		} = this.props;
+		//	mode={'dropdown'}
 		return (
-			<View style={{height: 50, backgroundColor: "#B6B6B6"}}>
-				<Picker
-					selectedValue={selectedSubSystem}
-					onValueChange={this.onSelect}
-					mode={'dropdown'}
+			<Picker
+				style = {style}
+				selectedValue={selectedSubSystem}
+				onValueChange={this.onSelect}
 				>
-					{subSystemList.map((item, index)=>{
-						return (
-							<Picker.Item key={item.key} label={item.text} value={item.key}/>
-						);
-					})}
-				</Picker>
-			</View>
+				{subSystemList.map((item, index)=>{
+					return (
+						<Picker.Item key={item.key} label={item.text} value={item.key}/>
+					);
+				})}
+			</Picker>
 		);
 	}
 });

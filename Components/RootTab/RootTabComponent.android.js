@@ -9,6 +9,8 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 import TabBar from './TabBar.android'
 import LogListComponent from '../LogList/LogListComponent'
 
+import Routes from '../Route'
+
 const styles = StyleSheet.create({
 	card: {
 		borderWidth: 1,
@@ -40,8 +42,8 @@ const RootTab = React.createClass({
 					renderTabBar={() => <TabBar />}
 					tabBarPosition={'bottom'}
 					>
-					<LogListComponent tabLabel={{iconName: 'android-home', tabName: '日志'}} />
-
+					<Routes initialRoute='logList' tabLabel={{iconName: 'android-home', tabName: '日志'}}></Routes>
+				
 			          <ScrollView tabLabel={{iconName: 'android-people', tabName: '租户'}} style={styles.tabView}>
 			            <View style={styles.card}>
 			              <Text>Friends</Text>

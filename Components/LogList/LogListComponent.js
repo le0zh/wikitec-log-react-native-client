@@ -10,10 +10,10 @@ from 'react-native'
 import RefreshListView from '../Common/RefreshListView'
 import WKService from '../../networkService/WKService'
 import LogCell from './LogCell'
-import SubSystemSelectComponent from '../SubSystemSelect/SubSystemSelectComponent'
 
 const LogListComponent = React.createClass({
 	filter: 'all',
+	name: '',
 
 	handleReloadData(response) {
 		const body = response._bodyInit;
@@ -40,15 +40,19 @@ const LogListComponent = React.createClass({
 		this.refs.RefreshListView.reloadData();
 	},
 
-	render() {
-		let marginTop = 44;
-		if (Platform.OS === 'ios') {
-			marginTop = 0;
-		}
+	componentWillMount() {
+		this.props.route.onSubSystemChange = this.onSubSystemChange;
+	},
 
+	componentWillReceiveProps() {
+		alert('aaa');
+		alert(this.props.filter);
+	},
+
+	render() {
+		//<SubSystemSelectComponent onSelectSubSystem={this.onSubSystemChange}></SubSystemSelectComponent>
 		return (
-			<View style={{backgroundColor: '#fff', flex: 1}}>
-				<SubSystemSelectComponent onSelectSubSystem={this.onSubSystemChange}></SubSystemSelectComponent>
+			<View style={{backgroundColor: '#fff', flex: 1, paddingTop:40}}>
 				<RefreshListView
 					style={{flex: 1}}
 					ref= {'RefreshListView'}
@@ -58,7 +62,7 @@ const LogListComponent = React.createClass({
 					handleReloadData={this.handleReloadData}
 					navigator={this.props.navigator}
 					maxPage={10}
-					contentInset={{top: 64, left: 0, bottom: 49, right: 0}}
+					contentInset={{top: 0, left: 0, bottom: 0, right: 0}}
 					contentOffset={{x:0, y: 0}}>
 				</RefreshListView>
 			</View>
