@@ -89,6 +89,10 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        manifestPlaceholders = [
+            JPush_APPID: "601be2d14878a8c80a519556",   //在此修改JPush的APPID
+            APP_CHANNEL: "1"      //应用渠道号
+        ]
     }
     splits {
         abi {
@@ -123,6 +127,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-jpush')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

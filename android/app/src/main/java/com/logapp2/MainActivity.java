@@ -1,11 +1,14 @@
 package com.logapp2;
 
 import com.facebook.react.ReactActivity;
+import cn.reactnative.modules.jpush.JPushPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends ReactActivity {
 
@@ -34,7 +37,20 @@ public class MainActivity extends ReactActivity {
     @Override
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
-            new MainReactPackage()
+            new MainReactPackage(),
+            new JPushPackage()
         );
+    }
+
+    @Override  
+    protected void onResume() {  
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
+    @Override  
+    protected void onPause() {  
+       super.onPause();
+       JPushInterface.onPause(this);
     }
 }
